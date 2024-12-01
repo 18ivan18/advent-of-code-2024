@@ -5,7 +5,7 @@ import requests
 import shutil
 import stat
 from bs4 import BeautifulSoup
-from base import solutions_dir, advent_of_code_base_url, year, day, path
+from base import solutions_dir, advent_of_code_base_url, year, day, path, session_cookie
 
 
 if (not os.path.exists(solutions_dir)):
@@ -18,7 +18,6 @@ def get_day_url(day: int) -> str:
 
 url = get_day_url(day + 1)
 next_day_str = f"{day+1:02}"
-
 response = requests.get(url)
 
 if (not response or (len(sys.argv) > 1 and next_day_str in os.listdir(solutions_dir))):
@@ -33,5 +32,12 @@ os.chmod(main_py_dir, os.stat(main_py_dir).st_mode | stat.S_IEXEC)
 soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
 with open(os.path.join(solutions_dir, next_day_str, 'README.md'), 'w') as fd:
     fd.write(soup.find('main').get_text())
+
+headers = {'cookie': f'session={session_cookie}'}
+
+# remove trailing newline
+with open(os.path.join(solutions_dir, next_day_str, 'input.txt'), 'w') as fd:
+    fd.write(requests.get(
+        f"{advent_of_code_base_url}/{year}/day/{day}/input", headers=headers).text[:-1])
 
 print('\033[1m' + f"Successfully created day {day + 1}!\n{url}")
