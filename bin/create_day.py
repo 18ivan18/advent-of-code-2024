@@ -38,6 +38,6 @@ headers = {'cookie': f'session={session_cookie}'}
 # remove trailing newline
 with open(os.path.join(solutions_dir, next_day_str, 'input.txt'), 'w') as fd:
     fd.write(requests.get(
-        f"{advent_of_code_base_url}/{year}/day/{day}/input", headers=headers).text[:-1])
+        f"{advent_of_code_base_url}/{year}/day/{day+1}/input", headers=headers).text[:-1])
 
 print('\033[1m' + f"Successfully created day {day + 1}!\n{url}")
