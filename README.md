@@ -6,3 +6,4 @@
 - [Day 2: Red-Nosed Reports](./solutions/02)
 - [Day 3: Mull It Over](./solutions/03)
 - [Day 4: Ceres Search](./solutions/04)
+- [Day 5: Print Queue](./solutions/05)
