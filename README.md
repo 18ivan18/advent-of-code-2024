@@ -9,3 +9,4 @@
 - [Day 5: Print Queue](./solutions/05)
 - [Day 6: Guard Gallivant](./solutions/06)
 - [Day 7: Bridge Repair](./solutions/07)
+- [ay 8: Resonant Collinearity](./solutions/08)
