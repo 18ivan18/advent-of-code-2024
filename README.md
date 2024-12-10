@@ -7,3 +7,4 @@
 - [Day 3: Mull It Over](./solutions/03)
 - [Day 4: Ceres Search](./solutions/04)
 - [Day 5: Print Queue](./solutions/05)
+- [Day 6: Guard Gallivant](./solutions/06)
