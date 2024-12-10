@@ -43,20 +43,26 @@ def solve() -> None:
 
     possible = 0
     for v in visited:
-        pos, direction = (start_x, start_y), 0
+        obstacle_x, obstacle_y = v
+        input[obstacle_x][obstacle_y] = '#'
+        x, y, direction = start_x, start_y, 0
         visited = set()
-        while is_inside(pos[0], pos[1], max_x, max_y):
-            visited.add((pos[0], pos[1], direction))
-            dx, dy = dirs[direction]
-            ni, nj = pos[0]+dx, pos[1]+dy
-            if (ni, nj, direction) in visited:
+        while is_inside(x, y, max_x, max_y):
+            if (x, y, direction) in visited:
                 possible += 1
                 break
-            tile = get_tile(pos[0], pos[1], input, direction)
-            if tile == "#" or (ni, nj) == v:
+            visited.add((x, y, direction))
+
+            tile = get_tile(x, y, input, direction)
+            if tile == '#':
                 direction = (direction + 1) % 4
                 continue
-            pos = (ni, nj)
+
+            dx, dy = dirs[direction]
+            x += dx
+            y += dy
+
+        input[obstacle_x][obstacle_y] = '.'
     print(possible)
 
 
