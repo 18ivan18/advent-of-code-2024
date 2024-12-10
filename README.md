@@ -8,3 +8,4 @@
 - [Day 4: Ceres Search](./solutions/04)
 - [Day 5: Print Queue](./solutions/05)
 - [Day 6: Guard Gallivant](./solutions/06)
+- [Day 7: Bridge Repair](./solutions/07)
