@@ -10,3 +10,4 @@
 - [Day 6: Guard Gallivant](./solutions/06)
 - [Day 7: Bridge Repair](./solutions/07)
 - [ay 8: Resonant Collinearity](./solutions/08)
+- [Day 9: Disk Fragmenter](./solutions/09)
