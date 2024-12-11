@@ -11,3 +11,4 @@
 - [Day 7: Bridge Repair](./solutions/07)
 - [ay 8: Resonant Collinearity](./solutions/08)
 - [Day 9: Disk Fragmenter](./solutions/09)
+- [Day 10: Hoof It](./solutions/10)
