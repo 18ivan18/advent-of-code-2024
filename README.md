@@ -13,3 +13,4 @@
 - [Day 9: Disk Fragmenter](./solutions/09)
 - [Day 10: Hoof It](./solutions/10)
 - [Day 11: Plutonian Pebbles](./solutions/11)
+- [Day 12: Garden Groups](./solutions/12)
