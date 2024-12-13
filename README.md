@@ -14,3 +14,4 @@
 - [Day 10: Hoof It](./solutions/10)
 - [Day 11: Plutonian Pebbles](./solutions/11)
 - [Day 12: Garden Groups](./solutions/12)
+- [Day 13: Claw Contraption](./solutions/13)
