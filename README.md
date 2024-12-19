@@ -16,3 +16,4 @@
 - [Day 12: Garden Groups](./solutions/12)
 - [Day 13: Claw Contraption](./solutions/13)
 - [Day 14: Restroom Redoubt](./solutions/14)
+- [Day 19: Linen Layout](./solutions/19)
