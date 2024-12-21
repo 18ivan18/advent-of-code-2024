@@ -20,3 +20,4 @@
 - [Day 17: Chronospatial Computer](./solutions/17)
 - [Day 18: RAM Run](./solutions/18)
 - [Day 19: Linen Layout](./solutions/19)
+- [Day 20: Race Condition](./solutions/20)
