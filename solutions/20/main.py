@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from copy import deepcopy
+from collections import defaultdict
 from sys import stdin
 
 
@@ -12,41 +12,51 @@ def find(grid, s='S'):
     raise ValueError('Start not found')
 
 
-def dfs(grid, x, y, visited=set(), cheats=1):
-    stack = [(x, y, 1)]
-    c = []
+def dfs(grid, x, y):
+    stack = [(x, y)]
+    path = [(x, y)]
+    visited = set()
     while stack:
-        x, y, dist = stack.pop()
+        x, y = stack.pop()
         visited.add((x, y))
+        if grid[x][y] == 'E':
+            return path
         for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
             nx, ny = x + dx, y + dy
             if not 0 <= nx < len(grid) or not 0 <= ny < len(grid[0]):
                 continue
-            if grid[nx][ny] == 'E':
-                return dist, c
             if grid[nx][ny] == '#':
-                if cheats > 0:
-                    ps, _ = dfs(grid, nx, ny, deepcopy(visited), cheats - 1)
-                    if ps > 0:
-                        c.append(ps+dist)
                 continue
             if (nx, ny) in visited:
                 continue
-            stack.append((nx, ny, dist+1))
-    return 0, c
+            stack.append((nx, ny))
+            path.append((nx, ny))
+    return path
 
 
 def solve() -> None:
     grid = [[y for y in x] for x in stdin.read().splitlines()]
     x, y = find(grid, 'S')
-
-    control, cheat_values = dfs(grid, x, y)
-    cheat_values = [control - x for x in cheat_values]
-    cheat_values = {x: cheat_values.count(x) for x in set(cheat_values)}
-
-    # print(control, cheat_values)
-    # print number of cheats that are >=100
-    print(sum(cheat_values[x] for x in cheat_values if x >= 100))
+    path = dfs(grid, x, y)
+    l = len(path)
+    distances_part_1, distances_part_2 = defaultdict(int), defaultdict(int)
+    part_1_secs, part_2_secs = 2, 20
+    for i, (x, y) in enumerate(path):
+        for j in range(i+1, len(path)):
+            # if manhatan distance is <= 2 we can move there with shortcut
+            mhdist = abs(x-path[j][0]) + abs(y-path[j][1])
+            if mhdist <= part_1_secs:
+                ndist = i + mhdist + (l - j)
+                if ndist < l:
+                    distances_part_1[l-ndist] += 1
+            if mhdist <= part_2_secs:
+                ndist = i + mhdist + (l - j)
+                if ndist < l:
+                    distances_part_2[l-ndist] += 1
+    print(sum(distances_part_1[x]
+          for x in distances_part_1 if x >= 100))
+    print(sum(distances_part_2[x]
+          for x in distances_part_2 if x >= 100))
 
 
 if __name__ == '__main__':
