@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from collections import defaultdict
-from heapq import heapify, heappop, heappush
+from heapq import heappop, heappush
 from sys import stdin
 
 
@@ -22,18 +22,22 @@ directions = [RIGHT, UP, DOWN, LEFT]
 
 def dijkstra(grid, x, y, ex, ey):
     dist = defaultdict(lambda: float('inf'))
-    dist[(x, y)] = 0
+    dist[(x, y, RIGHT)] = 0
     # start facing EAST...
     pq = [(0, x, y, RIGHT, [(x, y)])]
     paths = []
     best_score = float('inf')
 
-    while pq:
+    while pq and pq[0][0] <= best_score:
         current_distance, x, y, direction, path = heappop(pq)
         if x == ex and y == ey:
             best_score = current_distance
             paths.append(path)
             continue
+        if current_distance > dist[(x, y, direction)]:
+            continue
+
+        dist[(x, y, direction)] = current_distance
         for dx, dy in directions:
             nx, ny = x + dx, y + dy
             if grid[nx][ny] == '#':
@@ -43,9 +47,7 @@ def dijkstra(grid, x, y, ex, ey):
             new_distance = current_distance + 1
             if direction != (dx, dy):
                 new_distance += 1000
-            if new_distance < dist[(nx, ny)]:
-                dist[(nx, ny)] = new_distance
-                heappush(pq, (new_distance, nx, ny, (dx, dy), path+[(nx, ny)]))
+            heappush(pq, (new_distance, nx, ny, (dx, dy), path+[(nx, ny)]))
     return best_score, paths
 
 
@@ -54,8 +56,8 @@ def solve():
     grid = [[y for y in x] for x in stdin.read().splitlines()]
     sx, sy = find(grid, 'S')
     ex, ey = find(grid, 'E')
-    best_scroe, paths = dijkstra(grid, sx, sy, ex, ey)
-    print(best_scroe)
+    best_score, paths = dijkstra(grid, sx, sy, ex, ey)
+    print(best_score)
     best_seats = set()
     for path in paths:
         best_seats |= set(path)
