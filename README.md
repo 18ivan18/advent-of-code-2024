@@ -22,3 +22,4 @@
 - [Day 19: Linen Layout](./solutions/19)
 - [Day 20: Race Condition](./solutions/20)
 - [Day 24: Crossed Wires](./solutions/24)
+- [Day 25: Code Chronicle](./solutions/25)
