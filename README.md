@@ -17,7 +17,7 @@
 - [Day 13: Claw Contraption](./solutions/13)
 - [Day 14: Restroom Redoubt](./solutions/14)
 - [Day 15: Warehouse Woes](./solutions/15)
-- [Day 15: Reindeer Maze](./solutions/16)
+- [Day 16: Reindeer Maze](./solutions/16)
 - [Day 17: Chronospatial Computer](./solutions/17)
 - [Day 18: RAM Run](./solutions/18)
 - [Day 19: Linen Layout](./solutions/19)
